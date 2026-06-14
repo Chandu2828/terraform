@@ -1,5 +1,6 @@
 resource "aws_instance" "roboshop" {
-  count   = 2
+#   count   = 2
+  count = length(var.instances)
   ami                    = var.ami_id
   instance_type          = var.instance_type
   vpc_security_group_ids = [
@@ -14,7 +15,7 @@ resource "aws_instance" "roboshop" {
 
 # It creates in default VPC
 resource "aws_security_group" "roboshop" {
-  count = 2
+  count = length(var.instances)
   name        = "${var.project}-${var.environment}-${var.instances[count.index]}"
   description = "Allow TLS inbound traffic and all outbound traffic"
 
@@ -29,6 +30,11 @@ resource "aws_security_group" "roboshop" {
   tags = {
     Name = "${var.project}-${var.environment}-${var.instances[count.index]}"
   }
+
+# first it creates SG and then modify instance SG
+  lifecycle {
+    create_before_destroy = true 
+}
 }
 
 resource "aws_security_group" "common" {
