@@ -1,9 +1,9 @@
 variable "environment" {
-  default = "prod"
+  default = "dev"
   type = string
 }
 
-variable "project"{
+variable "project" {
   default = "roboshop"
   type = string
 }
@@ -24,6 +24,7 @@ variable "instance_type" {
   }
 }
 
+
 variable "sg_name" {
   type    = string
   default = "allow_terraform_vars"
@@ -40,6 +41,6 @@ variable "cidr" {
 }
 
 variable "instances" {
-  default = ["mongodb", "redis", "mysql", "rabbitmq"]
+  default = ["mongodb", "redis", "mysql", "rabbitmq", "catalogue", "user", "cart", "payment", "shipping"]
   type = list
 }
