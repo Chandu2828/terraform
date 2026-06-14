@@ -1,5 +1,5 @@
 resource "aws_instance" "roboshop" {
-  count   = 10
+  count   = 2
   ami                    = var.ami_id
   instance_type          = var.instance_type
   vpc_security_group_ids = [
@@ -7,14 +7,14 @@ resource "aws_instance" "roboshop" {
     aws_security_group.common.id
   ]
   tags = {
-    Name = "${var.project}.${var.environment}-${var.instances[count.index]}" # interpolation
+    Name = "${var.project}-${var.environment}-${var.instances[count.index]}" # interpolation
   }
 }
 
 
 # It creates in default VPC
 resource "aws_security_group" "roboshop" {
-  count = 10
+  count = 2
   name        = "${var.project}-${var.environment}-${var.instances[count.index]}"
   description = "Allow TLS inbound traffic and all outbound traffic"
 
