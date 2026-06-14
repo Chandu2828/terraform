@@ -19,8 +19,8 @@ variable "instance_type" {
   default = "t2.micro"
 
   validation {
-    condition     = contains(["t3.micro", "t3.small", "t3.medium", "t3.large"], var.instance_type)
-    error_message = "Instance type should be either t3.micro or t3.small"
+    condition     = contains(["t2.micro", "t2.small", "t2.medium", "t2.large"], var.instance_type)
+    error_message = "Instance type should be either t2.micro or t2.small"
   }
 }
 
