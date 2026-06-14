@@ -52,5 +52,9 @@ resource "aws_security_group" "common" {
     tags = {
         Name = "${var.project}-${var.environment}-common"
     }
+
+      lifecycle {
+    create_before_destroy = true 
+}
 }
 
