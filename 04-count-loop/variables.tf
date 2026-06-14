@@ -45,3 +45,12 @@ variable "instances" {
   # "mysql", "rabbitmq", "catalogue", "user", "cart", "payment", "shipping"
   type = list
 }
+
+variable "zone_id" {
+  default = "Z100713130SN6SD90QW7V"
+}
+
+variable "domain_name" {
+  default = "vnmurthy.online"
+}
+
