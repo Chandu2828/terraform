@@ -1,6 +1,6 @@
 resource "aws_instance" "roboshop"{
     for_each = var.instances
-    ami = var.instances
+    ami = var.ami_id
     instance_type = each.value.instance_type
     vpc_security_group_ids = [
         aws_security_group.roboshop[each.key].id,
