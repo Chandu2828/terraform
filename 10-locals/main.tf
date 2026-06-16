@@ -2,7 +2,7 @@ resource "aws_instance" "terraform_demo" {
     ami = local.ami_id
     instance_type = local.instance_type
     vpc_security_group_ids = [aws_security_group.allow_terraform.id]
-    tags = local_ec2.tags
+    tags = local.ec2_tags
 }
 
 resource "aws_security_group" "allow_terraform" {
