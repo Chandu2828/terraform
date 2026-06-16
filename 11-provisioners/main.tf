@@ -33,10 +33,23 @@ resource "aws_instance" "terraform_demo" {
         host =  self.public_ip
     }
 
-    provisioner "remote-exec" {
-        inline = [
-            "sudo dnf install nginx -y",
-        ]
+    # provisioner "remote-exec" {
+    #     inline = [
+    #         "sudo dnf install nginx -y",
+    #         "sudo systemctl start nginx"
+    #     ]
+    # }
+
+    # provisioner "remote-exec" {
+    #     when = destroy
+    #     inline = [
+    #         "sudo systemctl stop nginx"
+    #     ]
+    # }
+
+    provisioner "file" {
+        source = "script.sh"
+        destination = "/tmp/script.sh"
     }
 }
 
