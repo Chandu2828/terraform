@@ -10,7 +10,7 @@ variable "instance_type" {
 
   validation {
     condition     = contains(["t3.micro", "t3.small", "t3.medium", "t3.large"], var.instance_type)
-    error_message = "Instance type should be either t3.micro or t3.snall"
+    error_message = "Instance type should be either t3.micro or t3.small"
   }
 }
 

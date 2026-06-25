@@ -19,6 +19,15 @@ variable "instance_type" {
   }
 }
 
+variable "ec2_tags"{
+  type    = map 
+  default = {
+    Name        = "terraform-demo-1"
+    Project     = "roboshop"
+    environment = "dev"
+  }
+}
+
 variable "sg_name" {
   type    = string
   default = "allow_terraform_vars"
@@ -33,3 +42,13 @@ variable "cidr" {
   type    = list(string)
   default = ["0.0.0.0/0"]
 }
+
+variable "sg_tags" {
+  type = map 
+  default = {
+    Name        = "allow_terraform"
+    Project     = "roboshop"
+    Environment = "dev"
+  }
+}
+
