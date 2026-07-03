@@ -12,10 +12,9 @@ resource "aws_instance" "roboshop" {
   }
 }
 
-
 # It creates in default VPC
 resource "aws_security_group" "roboshop" {
-  count = length(var.instances)
+  count       = length(var.instances)
   name        = "${var.project}-${var.environment}-${var.instances[count.index]}"
   description = "Allow TLS inbound traffic and all outbound traffic"
 
@@ -38,14 +37,14 @@ resource "aws_security_group" "roboshop" {
 }
 
 resource "aws_security_group" "common" {
-    name = "${var.project}-${var.environment}-common"
+    name        = "${var.project}-${var.environment}-common"
     description = "Allow TLS inbound traffic and all outbound traffic"
 
     #outbound traffic 
     egress {
-        from_port = var.port
-        to_port = var.port
-        protocol = "-1" # all traffic
+        from_port   = var.port
+        to_port     = var.port
+        protocol    = "-1" # all traffic
         cidr_blocks = var.cidr
     }
 

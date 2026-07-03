@@ -1,8 +1,8 @@
 resource "aws_instance" "roboshop"{
-    for_each = var.instances
-    ami = var.ami_id
-    instance_type = each.value.instance_type
-    vpc_security_group_ids = [
+    for_each                = var.instances
+    ami                     = var.ami_id
+    instance_type           = each.value.instance_type
+    vpc_security_group_ids  = [
         aws_security_group.roboshop[each.key].id,
         aws_security_group.common.id
     ]
@@ -12,14 +12,14 @@ resource "aws_instance" "roboshop"{
 }
 
 resource "aws_security_group" "roboshop" {
-    for_each = var.instances
-    name = "${var.project}-${var.environment}-${each.key}"
+    for_each    = var.instances
+    name        = "${var.project}-${var.environment}-${each.key}"
     description = "Allow TLS inbound traffic and all outbound traffic"
 
     egress {
-        from_port = var.port
-        to_port = var.port
-        protocol = "-1"
+        from_port   = var.port
+        to_port     = var.port
+        protocol    = "-1"
         cidr_blocks = var.cidr
     }
     tags = {
@@ -32,13 +32,13 @@ resource "aws_security_group" "roboshop" {
 }
 
 resource "aws_security_group" "common" {
-    name = "${var.project}-${var.environment}-common"
+    name        = "${var.project}-${var.environment}-common"
     description = "Allow TLS inbound traffic and all outbound traffic"
 
     egress {
-        from_port = var.port
-        to_port = var.port
-        protocol = "-1"
+        from_port   = var.port
+        to_port     = var.port
+        protocol    = "-1"
         cidr_blocks = var.cidr
     }
 

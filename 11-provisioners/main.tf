@@ -1,10 +1,10 @@
 resource "aws_instance" "terraform_demo" {
-    ami = "ami-0220d79f3f480ecf5"
-    instance_type = "t2.micro"
+    ami             = "ami-0220d79f3f480ecf5"
+    instance_type   = "t2.micro"
     vpc_security_group_ids = [aws_security_group.allow_terraform.id]
     tags = {
-        Name    =   "terraform-demo-1"
-        Project =   "roboshop"
+        Name        =   "terraform-demo-1"
+        Project     =   "roboshop"
         Environment =   "dev"
     }
 
@@ -17,20 +17,20 @@ resource "aws_instance" "terraform_demo" {
     }
 
     provisioner "local-exec" {
-        when = destroy
+        when    = destroy
         command = "echo instance is going to be destroyed"
     }
 
     provisioner "local-exec" {
-        when = destroy
+        when    = destroy
         command =   "echo > inventory.ini"
     }
 
     connection {
-        type = "ssh"
-        user = "ec2-user"
+        type     = "ssh"
+        user     = "ec2-user"
         password = "DevOps321"
-        host =  self.public_ip
+        host     =  self.public_ip
     }
 
     # provisioner "remote-exec" {
@@ -41,39 +41,39 @@ resource "aws_instance" "terraform_demo" {
     # }
 
     # provisioner "remote-exec" {
-    #     when = destroy
+    #     when   = destroy
     #     inline = [
     #         "sudo systemctl stop nginx"
     #     ]
     # }
 
     provisioner "file" {
-        source = "script.sh"
+        source      = "script.sh"
         destination = "/tmp/script.sh"
     }
 }
 
 resource "aws_security_group" "allow_terraform" {
-    name    =   "allow_terraform_provisioners"
+    name        =   "allow_terraform_provisioners"
     description = "Allow TLS inbound traffic and all outbound traffic"
 
     egress {
-        from_port = 0
-        to_port = 0
-        protocol = "-1"
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
 
     ingress {
-        from_port = 22
-        to_port = 22
-        protocol = "tcp"
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
 
     tags = {
-        Name = "allow_terraform"
-        Project = "roboshop"
+        Name        = "allow_terraform"
+        Project     = "roboshop"
         Environment = "dev"
     }
 }

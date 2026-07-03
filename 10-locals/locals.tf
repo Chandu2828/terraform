@@ -1,9 +1,9 @@
 locals {
-    name    = "${var.project}-${var.environment}"
+    name            = "${var.project}-${var.environment}"
     instance_type   =   "t2.micro"
-    ami_id  =   data.aws_ami.joindevops.id
-    common_tags =   {
-        Name = "${var.project}-${var.environment}"
+    ami_id          =   data.aws_ami.joindevops.id
+    common_tags = {
+        Name        = "${var.project}-${var.environment}"
         Environment =   var.environment
         project     =   var.project
     }
