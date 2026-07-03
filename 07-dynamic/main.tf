@@ -11,7 +11,7 @@ resource "aws_instance" "terraform_demo" {
 
 # It creates in default vpc
 resource "aws_security_group" "allow_terraform" {
-    name    =   "allow_terraform_dynamic"
+    name        =   "allow_terraform_dynamic"
     description = "Allow TLS inbound traffic and all outbound traffic"
 
     # outbound traffic
@@ -56,8 +56,8 @@ resource "aws_security_group" "allow_terraform" {
     }
 
     tags = {
-        Name   =    "allow_terraform"
-        Project =   "roboshop"
-        Environmemt =   "dev"
+        Name        =  "allow_terraform"
+        Project     =  "roboshop"
+        Environmemt =  "dev"
     }
 }
