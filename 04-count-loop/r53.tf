@@ -13,7 +13,7 @@ resource "aws_route53_record" "frontend"{
     name    = "${var.project}-${var.environment}.${var.domain_name}" # roboshop-dev.vnmurthy.online
     type    = "A"
     ttl     = 1
-    records = [aws_instance.roboshop[index(var.instances, "frontend")].public_ip] # checks the indexo of frontend 
+    records = [aws_instance.roboshop[index(var.instances, "frontend")].public_ip] # checks the index of frontend 
 }
 
 
