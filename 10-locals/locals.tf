@@ -11,6 +11,7 @@ locals {
         local.common_tags,
         {
             Name = "${local.name}-locals-demo" # you can refer local in local but it is not possible in variables
+                    # roboshop-dev-locals-demo
         }
     )
 
