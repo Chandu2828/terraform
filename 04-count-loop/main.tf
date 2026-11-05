@@ -1,6 +1,6 @@
 resource "aws_instance" "roboshop" {
-#   count   = 2
-  count                  = length(var.instances)
+  count   = 2 # It will create the instances but with the same name for all the instances
+  count                  = length(var.instances) # loops until it read the last element in the list
   ami                    = var.ami_id
   instance_type          = var.instance_type
   vpc_security_group_ids = [
@@ -11,6 +11,8 @@ resource "aws_instance" "roboshop" {
     Name = "${var.project}-${var.environment}-${var.instances[count.index]}" # interpolation
   }
 }
+# count.index is reserved variable such as item in ansible
+# count is used for list variables  
 
 # It creates in default VPC
 resource "aws_security_group" "roboshop" {
@@ -54,6 +56,7 @@ resource "aws_security_group" "common" {
 
       lifecycle {
     create_before_destroy = true 
+    }
 }
-}
+
 
