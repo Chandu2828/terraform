@@ -47,7 +47,7 @@ resource "aws_instance" "terraform_demo" {
     #     ]
     # }
 
-    provisioner "file" {
+    provisioner "file" { # copy file from local to server
         source      = "script.sh"
         destination = "/tmp/script.sh"
     }
