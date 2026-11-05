@@ -48,7 +48,7 @@ resource "aws_security_group" "allow_terraform" {
     # we can create repeated blocks using terraform dynamic block
     dynamic "ingress" {
         for_each    =   var.ingress_rules
-        content { # this is goimg to be repeated so this data must be in contains
+        content { # this is going to be repeated so this data must be in content
             from_port   =   ingress.value.port
             to_port     =   ingress.value.port
             protocol    =   "tcp"
