@@ -1,6 +1,6 @@
 variable ingress_rules {
     default = {
-        ssh = {
+        ssh = { # key = ssh and port, cidr_blocks are values 
             port        = 22
             cidr_blocks = ["0.0.0.0/0"]
         }

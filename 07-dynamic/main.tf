@@ -50,7 +50,7 @@ resource "aws_security_group" "allow_terraform" {
         for_each    =   var.ingress_rules
         content { # this is going to be repeated so this data must be in content
             from_port   =   ingress.value.port
-            to_port     =   ingress.value.port
+            to_port     =   ingress.value.port 
             protocol    =   "tcp"
             cidr_blocks =   ingress.value.cidr_blocks
         }
