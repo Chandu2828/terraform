@@ -29,4 +29,3 @@ resource "aws_security_group" "allow_terrafrom" {
         Environment = "dev"
     }
 }
-
